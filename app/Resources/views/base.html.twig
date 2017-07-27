@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}BASE!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        {% block link %}{% endblock %}
+
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/base.css') }}" type="text/css" media="all">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <div class="navbar-more-overlay"></div>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top animate">
+            <div class="container navbar-more visible-xs">
+                <ul class="nav navbar-nav">
+                    <li>
+                         <a href="#">
+                             <span class="glyphicon glyphicon-home"></span>
+                             myFleet by Baza.sto8
+                         </a>
+                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                                Moje pojazdy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-wrench"></span>
+                                Ustawienia
+                            </a>
+                        </li>
+                    {% else %}
+                        <div>
+                            Zaloguj się lub zarejestruj!
+                        </div>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-header hidden-xs">
+                    <a class="navbar-brand" href="#">myFleet by Baza.sto8</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right mobile-bar">
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li>
+                            <a class="btn btn-default" role="button" href="{{ path('fos_user_security_logout') }}">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                {{ 'layout.logged_in_as' |trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                                Moje pojazdy
+                            </a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-wrench"></span>
+                                Ustawienia
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <div class="hidden-xs">
+
+                                {% block loginForm %}
+
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}
+
+                                        {% for type, messages in app.session.flashBag.all %}
+                                            {% for message in messages %}
+                                                <div class="{{ type }}">
+                                                    {{ message|trans({}, 'FOSUserBundle') }}
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+
+                                        {% if error %}
+                                            <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+                                        {% endif %}
+
+                                        <form class="form-inline formLog" action="{{ path("fos_user_security_check") }}" method="post">
+                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                            <div class="form-group">
+                                                <label class="sr-only" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                                                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="user name" required="required" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                                                <input class="form-control" type="password" id="password" name="_password" placeholder="hasło" required="required" />
+                                            </div>
+                                            <input class="btn btn-danger" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                                        </form>
+
+                                    {% endif %}
+
+                                {%  endblock loginForm %}
+
+                            </div>
+                        </li>
+                        <li>
+                            <a class="btn btn-default" role="button" href="{{ path('fos_user_registration_register') }}">
+                                Rejestracja
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-phone-alt hidden-xs"></span>
+                            <span class="hidden-xs">Kontakt</span>
+                            <span style="font-size: 40px" class="glyphicon glyphicon-phone-alt visible-xs"></span>
+                        </a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="#navbar-more-show">
+                            <span style="font-size: 40px" class="glyphicon glyphicon-menu-hamburger"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}
+
+            {%  block header %}{%  endblock header %}
+
+        {%  else %}
+
+            {% block body %}{% endblock %}
+
+        {% endif %}
+
+        {% block javascripts %}<script src="{{ asset('bundles/app/js/app.js') }}"></script>{% endblock %}
+    </body>
+</html>

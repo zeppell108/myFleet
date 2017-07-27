@@ -1,0 +1,26 @@
+.width80 {
+    min-width: 80px;
+    max-width: 80px;
+}
+.width160 {
+    min-width: 160px;
+    max-width: 160px;
+}
+.formColorGreen {
+    background-color: #00CC00;
+}
+.formColorYellow {
+    background-color: #FFFF00;
+}
+.formColorRed {
+    background-color: #FF0000;
+}
+.formColorBlue {
+    background-color: #6495ED;
+}
+.formColorPurple {
+    background-color: #FF00FF;
+}
+.formColorOrange {
+    background-color: orange;
+}
