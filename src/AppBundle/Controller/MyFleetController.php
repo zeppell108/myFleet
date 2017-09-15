@@ -17,7 +17,7 @@ class MyFleetController extends Controller
      */
     public function indexAction() //Request $request
     {
-        $serviceTypes = ServiceTypeRepository::getAllServices();
+        $serviceTypes = $this->getDoctrine()->getRepository('AppBundle:ServiceType')->findBy([], ['id' => 'ASC']);
 
 //        $loginForm = $this->createForm(ServiceTypeType::class, $serviceTypes);
 
