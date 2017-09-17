@@ -30,11 +30,18 @@ class User extends BaseUser
     private $vehicle;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Vehicle", inversedBy="user")
+     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
+     */
+    private $autoService;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->vehicle = new ArrayCollection();
+        $this->autoService = new ArrayCollection();
     }
 
     /**
@@ -57,9 +64,31 @@ class User extends BaseUser
 
     /**
      * @param mixed $vehicle
+     * @return User
      */
     public function setVehicle($vehicle)
     {
         $this->vehicle = $vehicle;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAutoService()
+    {
+        return $this->autoService;
+    }
+
+    /**
+     * @param mixed $autoService
+     * @return User
+     */
+    public function setAutoService($autoService)
+    {
+        $this->autoService = $autoService;
+
+        return $this;
     }
 }

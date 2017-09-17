@@ -19,98 +19,128 @@
 
 {% block body %}
 
-    
-
-
-
     <section id="formEvent">
         <div class="well">
             <form style="margin: 2%" class="form-inline" action="#" method="POST">
-            <div class="container-fluid">
 
-                <div class="panel panel-default">
+                <div class="container-fluid">
 
-                    <div class="panel-heading">
-                        <div class="row">
-                            {#<form style="margin: 2%" class="form-inline" action="#" method="POST">#}
-                                <div id='datetimepicker' class="input-group date col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                                    <div class="width80 input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-                                    <input id="eventDate" type="date" class="form-control width160" data-date-format="dd/mm/yyyy" data-provide="datepicker">
-                                </div>
-                                <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                                    <div class="width80 input-group-addon"><span class="glyphicon glyphicon-bed"></span></div>
-                                    <select class="form-control width160">
-                                        <option value="0" selected disabled>Pojazd</option>
-                                        {% for service in serviceTypes %}
-                                            <option value="{{ service.id }}">{{ service.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            {#</form>#}
-                        </div>
-                    </div>
+                    <div class="panel panel-default">
 
-                    <div class="panel-body">
-
-                        <div id="formColor" class="row">
-                            {#<form style="margin: 2%" class="form-inline" action="#" method="POST">#}
-                                <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                                    <div class="width80 input-group-addon"><span class="glyphicon glyphicon-wrench"></span></div>
-                                    <select id="serviceType" class="form-control width160">
-                                        <option value="0" selected disabled>Rodzaj zdarzenia</option>
-                                        {% for service in serviceTypes %}
-                                            <option value="{{ service.id }}">{{ service.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="input-group  col-xs-12 col-sm-4 col-md-3 col-lg-2 custom-search-form">
-                                    <div class="input-group-btn">
-                                        <button id="searchParts" type="button" class="btn btn-search btn-default width80" data-toggle="dropdown">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                            <span class="caret"></span>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control width160" placeholder="wprowadź lub wybierz część">
-                                </div>
-                                <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                                    <div class="width80 input-group-addon">PLN</div>
-                                    <input type="number" class="form-control width160" id="inlineFormInputGroup" placeholder="war. wymiany">
-                                </div>
-                                <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                                    <div class="width80 input-group-addon">tyś. KM</div>
-                                    <input type="number" class="input-period form-control width160" min="0" step="1" placeholder="okr. wymiany">
-                                </div>
-                                <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                                    <div class="width80 input-group-addon">miesięcy</div>
-                                    <input type="number" class="input-period form-control width160" min="0" step="1" placeholder="okr. wymiany">
-                                </div>
-                            {#</form>#}
-                        </div>
-
-                    </div>
-
-                    <div class="panel-footer">
-
+                        <div class="panel-heading">
                             <div class="row">
                                 {#<form style="margin: 2%" class="form-inline" action="#" method="POST">#}
-                                <div class="input-group">
-                                    <button id="addEvent" class="btn btn-success">Dodaj kolejne zdarzenie
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </button>
-                                </div>
-                                <div class="input-group">
-                                    <button class="btn btn-primary" {#type="submit"#}>Zapisz całe zdarzenie
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                    </button>
-                                </div>
+                                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="width80 input-group-addon">
+                                            <span class="glyphicon glyphicon-bed"></span>
+                                        </div>
+                                        <select class="form-control width160">
+                                            <option value="0" selected disabled>Pojazd</option>
+                                            {% for veh in vehicles %}
+                                                <option value="{{ veh.id }}">{{ veh.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="input-group  col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <input id="iventName" type="text" class="form-control"
+                                               placeholder="wprowadź nazwę zdarzenia">
+                                    </div>
+                                    <div id='datetimepicker' class="input-group date col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="width80 input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                        <input id="eventDate" type="date" class="form-control width160"
+                                               data-date-format="dd/mm/yyyy" data-provide="datepicker">
+                                    </div>
+
+                                {#</form>#}
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div id="formColor" class="row">
+                                {#<form style="margin: 2%" class="form-inline" action="#" method="POST">#}
+                                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="width80 input-group-addon">
+                                            <span class="glyphicon glyphicon-wrench"></span>
+                                        </div>
+                                        <select id="serviceType" class="form-control width160">
+                                            <option value="0" selected disabled>Rodzaj zdarzenia</option>
+                                            {% for service in serviceTypes %}
+                                                <option value="{{ service.id }}">{{ service.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="input-group  col-xs-12 col-sm-4 col-md-3 col-lg-2 custom-search-form">
+                                        <div class="input-group-btn">
+                                            <button id="searchParts" type="button"
+                                                    class="btn btn-search btn-default width80" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                                <span class="caret"></span>
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control width160"
+                                               placeholder="wprowadź lub wybierz część">
+                                    </div>
+                                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="width80 input-group-addon">PLN</div>
+                                        <input type="number" class="form-control width160" id="inlineFormInputGroup"
+                                               placeholder="war. wymiany">
+                                    </div>
+                                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="width80 input-group-addon">tyś. KM</div>
+                                        <input type="number" class="input-period form-control width160"
+                                               min="0" step="1" placeholder="okr. wymiany">
+                                    </div>
+                                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="width80 input-group-addon">miesięcy</div>
+                                        <input type="number" class="input-period form-control width160"
+                                               min="0" step="1" placeholder="okr. wymiany">
+                                    </div>
+                                    <div class="input-group  col-xs-12 col-sm-4 col-md-3 col-lg-2 custom-search-form">
+                                        <div class="input-group-btn">
+                                            <button id="searchAutoService" type="button"
+                                                    class="btn btn-search btn-default width80" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                                <span class="caret"></span>
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control width160"
+                                               placeholder="wprowadź lub wybierz warsztat">
+                                    </div>
+                                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                                        <button id="delEvent" class="btn btn-danger">Usuń to zdarzenie
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </div>
                                 {#</form>#}
                             </div>
 
+                        </div>
+
+                        <div class="panel-footer">
+
+                                <div class="row">
+                                    {#<form style="margin: 2%" class="form-inline" action="#" method="POST">#}
+                                    <div class="input-group">
+                                        <button id="addEvent" class="btn btn-success">Dodaj kolejne zdarzenie
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </div>
+                                    <div class="input-group">
+                                        <button class="btn btn-primary" {#type="submit"#}>Zapisz całe zdarzenie
+                                            <span class="glyphicon glyphicon-floppy-save"></span>
+                                        </button>
+                                    </div>
+                                    {#</form>#}
+                                </div>
+
+                        </div>
                     </div>
+
+
                 </div>
-
-
-            </div>
             </form>
         </div>
         <script>

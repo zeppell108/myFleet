@@ -3,18 +3,23 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ServiceTypeType extends AbstractType
+class VehicleType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', ChoiceType::class);
+        $builder
+            ->add('name', null, ['label'=>'Nazwa pojazdu'])
+            ->add('purchasePrice', MoneyType::class, ['label'=>'Cena zakupu', 'currency' => 'PLN'])
+            ->add('purchaseDate', DateType::class, ['label'=>'Data zakupu', 'widget' => 'choice'])
+        ;
     }
     
     /**
@@ -23,7 +28,7 @@ class ServiceTypeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ServiceType'
+            'data_class' => 'AppBundle\Entity\Vehicle'
         ));
     }
 
@@ -32,7 +37,7 @@ class ServiceTypeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_servicetype';
+        return 'appbundle_vehicle';
     }
 
 

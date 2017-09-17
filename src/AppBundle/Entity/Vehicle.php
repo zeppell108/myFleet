@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User;
 
@@ -65,6 +66,20 @@ class Vehicle
      * @ORM\Column(name="sale_date", type="date")
      */
     private $saleDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="vehicle")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
+
+    /**
+     * Vehicle constructor.
+     */
+    public function __construct()
+    {
+        $this->event = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -194,6 +209,25 @@ class Vehicle
     public function setSalePrice(int $salePrice)
     {
         $this->salePrice = $salePrice;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param mixed $event
+     * @return Vehicle
+     */
+    public function setEvent($event)
+    {
+        $this->event = $event;
 
         return $this;
     }

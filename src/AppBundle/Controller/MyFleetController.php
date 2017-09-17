@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
+use AppBundle\Entity\Vehicle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,12 +16,17 @@ class MyFleetController extends Controller
 {
     /**
      * @Route("/", name="main")
+     * @param Request $request
+     * @return
      */
-    public function indexAction() //Request $request
+    public function indexAction(Request $request) //Request $request
     {
-        $serviceTypes = $this->getDoctrine()->getRepository('AppBundle:ServiceType')->findBy([], ['id' => 'ASC']);
+//        echo '<pre>' . var_export($this->getUser(), true) . '</pre>';die();
+        $this->getUser()
+        ? $vehicles = $this->getDoctrine()->getRepository('AppBundle:Vehicle')->findBy(['user' => $this->getUser()->getId()])
+        : $vehicles = [];
 
-//        $loginForm = $this->createForm(ServiceTypeType::class, $serviceTypes);
+        $serviceTypes = $this->getDoctrine()->getRepository('AppBundle:ServiceType')->findBy([], ['id' => 'ASC']);
 
         $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
@@ -43,27 +50,24 @@ class MyFleetController extends Controller
         // last username entered by the user
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
 
-        $csrfToken = $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null;
+        $csrfToken = $this->container->has('form.csrf_provider')
+            ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate')
+            : null;
 
-        return $this->renderLogin([
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'csrf_token'    => $csrfToken,
-            'serviceTypes'  => $serviceTypes
+        return $this->renderHome([
+            'last_username'     => $lastUsername,
+            'error'             => $error,
+            'csrf_token'        => $csrfToken,
+            'serviceTypes'      => $serviceTypes,
+            'vehicles'          => $vehicles,
         ]);
     }
 
-    protected function renderLogin(array $data)
+    protected function renderHome(array $data)
     {
         $template = sprintf('home.html.%s', $this->container->getParameter('fos_user.template.engine'));
 
         return $this->container->get('templating')->renderResponse($template, $data);
-    }
-
-    private function createLoginForm(Request $request)
-    {
-//        $loginForm = $this->createFormBuilder()
-//            ->add()
     }
 
     public function checkAction()
