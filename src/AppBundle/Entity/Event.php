@@ -31,12 +31,12 @@ class Event
     private $name;
 
     /**
-     * @var int
+     * @var
      *
      * @ORM\Column(name="event_element", type="integer")
      *
-     * @ORM\ManyToOne(targetEntity="EventElement", inversedBy="event")
-     * @ORM\JoinColumn(name="event_element_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="EventElement", inversedBy="event", cascade={"persist"})
+     * @ORM\JoinColumn(name="eventElement_id", referencedColumnName="id")
      */
     private $eventElement;
 
@@ -101,7 +101,7 @@ class Event
     /**
      * Set vehicle
      *
-     * @param integer $vehicle
+     * @param $vehicle
      * @return Event
      */
     public function setVehicle($vehicle)
@@ -114,7 +114,7 @@ class Event
     /**
      * Get vehicle
      *
-     * @return integer 
+     * @return \stdClass
      */
     public function getVehicle()
     {
@@ -145,7 +145,7 @@ class Event
     }
 
     /**
-     * @return int
+     * @return ArrayCollection
      */
     public function getEventElement()
     {
@@ -153,13 +153,31 @@ class Event
     }
 
     /**
-     * @param int $eventElement
+     * @param $eventElement
      * @return Event
      */
-    public function setEventElement(int $eventElement)
+    public function setEventElement($eventElement)
     {
         $this->eventElement = $eventElement;
 
         return $this;
+    }
+
+    /**
+     * @param EventElement $eventElement
+     */
+    public function addTag(EventElement $eventElement)
+    {
+        $eventElement->addEvent($this);
+
+        $this->eventElement->add($eventElement);
+    }
+
+    /**
+     * @param EventElement $eventElement
+     */
+    public function removeTag(EventElement $eventElement)
+    {
+        $this->eventElement->removeElement($eventElement);
     }
 }

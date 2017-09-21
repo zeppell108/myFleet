@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Event;
+use AppBundle\Entity\EventElement;
+use AppBundle\Entity\ServiceType;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Vehicle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Repository\ServiceTypeRepository;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\SecurityContext;
 use AppBundle\Form\ServiceTypeType;
 
@@ -22,11 +26,54 @@ class MyFleetController extends Controller
     public function indexAction(Request $request) //Request $request
     {
 //        echo '<pre>' . var_export($this->getUser(), true) . '</pre>';die();
+
+
+        // get all Users vehicles or set empty array if User don't have any vehicle yet
         $this->getUser()
         ? $vehicles = $this->getDoctrine()->getRepository('AppBundle:Vehicle')->findBy(['user' => $this->getUser()->getId()])
         : $vehicles = [];
 
         $serviceTypes = $this->getDoctrine()->getRepository('AppBundle:ServiceType')->findBy([], ['id' => 'ASC']);
+
+        $event = new Event();
+        $eventElement = new EventElement();
+//        $serviceType = new ServiceType();
+//foreach ($serviceTypes as $serviceType){
+//
+//    $eventElement->getServiceType()->add($serviceType);
+//}
+
+
+        $event->getEventElement()->add($eventElement);
+
+//        $eventElement2 = new EventElement();
+//        $event->getEventElement()->add($eventElement2);
+        $form = $this->createForm('AppBundle\Form\EventType', $event);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() ) {
+
+
+
+            echo '<pre>' . var_export($form->getData(), true) . '</pre>';die();
+
+            echo '!!!!!!'; die();
+        }
+
+//        $formEventElement = $this->createForm('AppBundle:Form:EventElement', $eventElement);
+//
+//        $formEventElement->handleRequest($request);
+//
+//        if ($formEventElement->isSubmitted() && $formEventElement->isValid()) {
+//            $eventElement->setEvent($event);
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($eventElement);
+//            $em->persist($event);
+//            $em->flush();
+//        }
+
+//        if ()
+
 
         $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
@@ -60,6 +107,7 @@ class MyFleetController extends Controller
             'csrf_token'        => $csrfToken,
             'serviceTypes'      => $serviceTypes,
             'vehicles'          => $vehicles,
+            'form'              => $form->createView(),
         ]);
     }
 
@@ -78,5 +126,11 @@ class MyFleetController extends Controller
     public function logoutAction()
     {
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
+    }
+
+    public function renderEventElementForm(Request $request, $iterator = null)
+    {
+        $session = new Session();
+        $iterator ? $session->set('iterator', $iterator) : null;
     }
 }

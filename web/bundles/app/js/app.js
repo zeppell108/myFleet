@@ -4,42 +4,104 @@
 
 $(function(){
 
-    function renderFormEventPart() {
+    var $collectionHolder;
 
-        alert('function');
+    var $addEventElementLink = $('<a href="#" class="btn btn-success">' +
+                                '<span class="glyphicon glyphicon-plus"></span> Dodaj kolejne zdarzenie' +
+                                '</a>');
+    var $newLinkLi = $('<li class="list-group-item"></li>').append($addEventElementLink);
 
-        var newElement = $("<div class='new'> This is new element</div>");
-        var foo = $("#formColor");
 
-        newElement.appendTo(foo);
-    };
+    // Get the ul that holds the collection of eventElements
+    $collectionHolder = $('ul.list-group');
 
-    $('#serviceType').attr('selected','selected').change( function () {
+    // add a delete link to all of the existing eventElements form li elements
+    $collectionHolder.find('li').each(function() {
+        addEventElementFormDeleteLink($(this));
+    });
+
+    // add the "Dodaj kolejne zdarzenie" anchor and li to the tags ul
+    $collectionHolder.append($newLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+    $addEventElementLink.on('click', function(e) {
+
+        e.preventDefault();
+
+        addEventElementForm($collectionHolder, $newLinkLi);
+    });
+
+    function addEventElementForm($collectionHolder, $newLinkLi) {
+        // Get the data-prototype
+        var prototype = $collectionHolder.data('prototype');
+
+        // get the new index
+        var index = $collectionHolder.data('index');
+
+        var newForm = prototype;
+        // You need this only if you didn't set 'label' => false in your tags field in TaskType
+        // Replace '__name__label__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        // newForm = newForm.replace(/__name__label__/g, index);
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        newForm = newForm.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Dodaj kolejne zdarzenie" link li
+        var $newFormLi = $('<li></li>').append(newForm);
+        $newLinkLi.before($newFormLi);
+
+        addEventElementFormDeleteLink($newFormLi);
+    }
+
+    function addEventElementFormDeleteLink($EventElementFormLi) {
+
+        var $removeFormA = $('<a href="#" class="btn btn-danger">' +
+                            '<span class="glyphicon glyphicon-minus"></span> Usuń to zdarzenie' +
+                            '</a>');
+        $EventElementFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function(e) {
+
+            e.preventDefault();
+
+            $EventElementFormLi.remove();
+        });
+    }
+
+    $('#appbundle_event_eventElement_0_serviceTypee').attr('selected','selected').change( function () {
 
         var serviceTypeColor = $('#formColor').removeAttr("class");
-        var serviceTypeId = $('#serviceType').find(":selected").val();
+        var serviceTypeId = $('#appbundle_event_eventElement_0_serviceType').find(":selected").val();
 
         $ ('.input-period').removeAttr("disabled");
 
         switch (serviceTypeId) {
             case '1':
-                serviceTypeColor.addClass("formColorGreen").addClass("row");
+                serviceTypeColor.addClass("formColorGreen").addClass("panel-body");
                 $ ('.input-period').attr("disabled", "disabled");
                 break;
             case '2':
-                serviceTypeColor.addClass("formColorYellow").addClass("row");
+                serviceTypeColor.addClass("formColorYellow").addClass("panel-body");
                 break;
             case '3':
-                serviceTypeColor.addClass("formColorRed").addClass("row");
+                serviceTypeColor.addClass("formColorRed").addClass("panel-body");
                 break;
             case '4':
-                serviceTypeColor.addClass("formColorPurple").addClass("row");
+                serviceTypeColor.addClass("formColorPurple").addClass("panel-body");
                 break;
             case '5':
-                serviceTypeColor.addClass("formColorBlue").addClass("row");
+                serviceTypeColor.addClass("formColorBlue").addClass("panel-body");
                 break;
             case '6':
-                serviceTypeColor.addClass("formColorOrange").addClass("row");
+                serviceTypeColor.addClass("formColorOrange").addClass("panel-body");
                 break;
         }
     });
@@ -55,9 +117,9 @@ $(function(){
         return false;
     });
 
-    $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        startDate: '-3d'
-    });
+    // $('.datepicker').datepicker({
+    //     format: 'dd/mm/yyyy',
+    //     startDate: '-3d'
+    // });
 
 });

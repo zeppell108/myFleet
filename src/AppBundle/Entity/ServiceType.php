@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -29,6 +30,13 @@ class ServiceType extends Controller
      */
     private $name;
 
+    /**
+     * @Assert\Type(type="AppBundle\Entity\EventElement")
+     * @Assert\Valid()
+     * @ORM\OneToOne(targetEntity="EventElement", inversedBy="serviceType")
+     * @ORM\JoinColumn(name="eventElement_id", referencedColumnName="id")
+     */
+    private $eventElement;
 
     /**
      * Get id
@@ -61,5 +69,24 @@ class ServiceType extends Controller
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEventElement()
+    {
+        return $this->eventElement;
+    }
+
+    /**
+     * @param mixed $eventElement
+     * @return $this /stdClass
+     */
+    public function setEventElement(EventElement $eventElement = null)
+    {
+        $this->eventElement = $eventElement;
+
+        return $this;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,13 +35,17 @@ class EventElement
     /**
      * @var int
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="serviceType", type="integer")
+     * @ORM\OneToOne(targetEntity="ServiceType", mappedBy="eventElement", cascade={"persist"})
+     * @ORM\JoinColumn(name="serviceType_id", referencedColumnName="id")
      */
     private $serviceType;
 
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
@@ -92,8 +97,7 @@ class EventElement
 
     /**
      * Get event
-     *
-     * @return integer 
+     * @return /stdClass
      */
     public function getEvent()
     {
@@ -213,5 +217,15 @@ class EventElement
     public function getMonthPeriod()
     {
         return $this->monthPeriod;
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function addEvent(Event $event)
+    {
+        if (!$this->event->contains($event)) {
+            $this->event->add($event);
+        }
     }
 }
