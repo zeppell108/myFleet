@@ -4,17 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Event;
 use AppBundle\Entity\EventElement;
-use AppBundle\Entity\ServiceType;
-use AppBundle\Entity\User;
-use AppBundle\Entity\Vehicle;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Repository\ServiceTypeRepository;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\SecurityContext;
-use AppBundle\Form\ServiceTypeType;
 
 class MyFleetController extends Controller
 {
@@ -23,41 +18,41 @@ class MyFleetController extends Controller
      * @param Request $request
      * @return
      */
-    public function indexAction(Request $request) //Request $request
+    public function indexAction(Request $request)
     {
-//        echo '<pre>' . var_export($this->getUser(), true) . '</pre>';die();
+//        $this->temp1();
 
-
-        // get all Users vehicles or set empty array if User don't have any vehicle yet
-        $this->getUser()
-        ? $vehicles = $this->getDoctrine()->getRepository('AppBundle:Vehicle')->findBy(['user' => $this->getUser()->getId()])
-        : $vehicles = [];
-
-        $serviceTypes = $this->getDoctrine()->getRepository('AppBundle:ServiceType')->findBy([], ['id' => 'ASC']);
 
         $event = new Event();
-        $eventElement = new EventElement();
-//        $serviceType = new ServiceType();
-//foreach ($serviceTypes as $serviceType){
-//
-//    $eventElement->getServiceType()->add($serviceType);
-//}
 
+//        $eventElement->setEvent($event);
 
-        $event->getEventElement()->add($eventElement);
-
-//        $eventElement2 = new EventElement();
-//        $event->getEventElement()->add($eventElement2);
         $form = $this->createForm('AppBundle\Form\EventType', $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() ) {
 
+            echo '<pre>' . print_r($form->getData(), true) . '</pre>';die();
+
+            foreach ($form->getData()->geteventElement() as $element){
+
+            }
+
+//            $eventElement = new EventElement();
+//            $event->getEventElement()->add($eventElement);
 
 
-            echo '<pre>' . var_export($form->getData(), true) . '</pre>';die();
 
-            echo '!!!!!!'; die();
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($event);
+            $em->persist($eventElement);
+
+            $em->flush();
+
+//            echo '<pre>' . var_export($form->getData()->getVehicle(), true) . '</pre>';die();
+//
+//            echo '!!!!!!'; die();
         }
 
 //        $formEventElement = $this->createForm('AppBundle:Form:EventElement', $eventElement);
@@ -105,8 +100,6 @@ class MyFleetController extends Controller
             'last_username'     => $lastUsername,
             'error'             => $error,
             'csrf_token'        => $csrfToken,
-            'serviceTypes'      => $serviceTypes,
-            'vehicles'          => $vehicles,
             'form'              => $form->createView(),
         ]);
     }
@@ -128,9 +121,18 @@ class MyFleetController extends Controller
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
     }
 
-    public function renderEventElementForm(Request $request, $iterator = null)
+    public function temp1()
     {
-        $session = new Session();
-        $iterator ? $session->set('iterator', $iterator) : null;
+        $em = $this->getDoctrine()->getManager();
+        $eve = $em->getRepository('AppBundle:Event')->findAll();
+
+        $originalElements = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($eve as $item) {
+            $originalElements->add($item->getEventElement());
+        }
+        echo '<pre>' . var_export($originalElements, true) . '</pre>';
+        die();
     }
 }

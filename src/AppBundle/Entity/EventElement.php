@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections;
 
 /**
  * EventElement
@@ -27,17 +29,17 @@ class EventElement
      *
      * @ORM\Column(name="event", type="integer")
      *
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="event_element")
+     * @ORM\ManyToOne(targetEntity="Event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
-    private $event;
+    private $event; //, inversedBy="event_element"
 
     /**
      * @var int
      *
      * @Assert\NotBlank()
      * @ORM\Column(name="serviceType", type="integer")
-     * @ORM\OneToOne(targetEntity="ServiceType", mappedBy="eventElement", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="ServiceType")
      * @ORM\JoinColumn(name="serviceType_id", referencedColumnName="id")
      */
     private $serviceType;
@@ -85,10 +87,10 @@ class EventElement
     /**
      * Set event
      *
-     * @param integer $event
+     * @param $event
      * @return EventElement
      */
-    public function setEvent($event)
+    public function setEvent(Event $event)
     {
         $this->event = $event;
 
@@ -224,8 +226,10 @@ class EventElement
      */
     public function addEvent(Event $event)
     {
-        if (!$this->event->contains($event)) {
-            $this->event->add($event);
-        }
+//        echo '<pre>' . var_export($this->event, true) . '</pre>';die();
+//        if (!$this->event->contains($event)) {
+//            $this->event->add($event);
+//        }
+        $this->setEvent($event);
     }
 }

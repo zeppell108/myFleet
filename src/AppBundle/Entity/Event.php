@@ -28,17 +28,17 @@ class Event
      *
      * @ORM\Column(name="name", type="string", length=50)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var
      *
      * @ORM\Column(name="event_element", type="integer")
      *
-     * @ORM\ManyToOne(targetEntity="EventElement", inversedBy="event", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="EventElement", mappedBy="event", cascade={"persist"})
      * @ORM\JoinColumn(name="eventElement_id", referencedColumnName="id")
      */
-    private $eventElement;
+    protected $eventElement;
 
     /**
      * @var \stdClass
@@ -48,14 +48,14 @@ class Event
      * @ORM\ManyToOne(targetEntity="Vehicle", inversedBy="event")
      * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
      */
-    private $vehicle;
+    protected $vehicle;
 
     /**
      * @var DateTime
      *
      * @ORM\Column(name="date", type="date")
      */
-    private $date;
+    protected $date;
 
     /**
      * Event constructor.
@@ -160,15 +160,17 @@ class Event
     {
         $this->eventElement = $eventElement;
 
+        $eventElement->setEvent($this);
+
         return $this;
     }
 
     /**
      * @param EventElement $eventElement
      */
-    public function addTag(EventElement $eventElement)
+    public function addEventElement($eventElement)
     {
-        $eventElement->addEvent($this);
+        $eventElement->setEvent($this);
 
         $this->eventElement->add($eventElement);
     }
@@ -176,7 +178,7 @@ class Event
     /**
      * @param EventElement $eventElement
      */
-    public function removeTag(EventElement $eventElement)
+    public function removeEventElement(EventElement $eventElement)
     {
         $this->eventElement->removeElement($eventElement);
     }

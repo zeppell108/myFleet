@@ -30,13 +30,9 @@ class ServiceType extends Controller
      */
     private $name;
 
-    /**
-     * @Assert\Type(type="AppBundle\Entity\EventElement")
-     * @Assert\Valid()
-     * @ORM\OneToOne(targetEntity="EventElement", inversedBy="serviceType")
-     * @ORM\JoinColumn(name="eventElement_id", referencedColumnName="id")
-     */
-    private $eventElement;
+    public function __toString() {
+        return $this->name;
+    }
 
     /**
      * Get id
@@ -69,24 +65,5 @@ class ServiceType extends Controller
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEventElement()
-    {
-        return $this->eventElement;
-    }
-
-    /**
-     * @param mixed $eventElement
-     * @return $this /stdClass
-     */
-    public function setEventElement(EventElement $eventElement = null)
-    {
-        $this->eventElement = $eventElement;
-
-        return $this;
     }
 }

@@ -2,109 +2,168 @@
  * Created by zeppell on 10.07.17.
  */
 
-$(function(){
+$( document ).ready(function() {
 
-    var $collectionHolder;
+    var $collectionHolder = $('ul.list-group');
 
-    var $addEventElementLink = $('<a href="#" class="btn btn-success">' +
-                                '<span class="glyphicon glyphicon-plus"></span> Dodaj kolejne zdarzenie' +
-                                '</a>');
-    var $newLinkLi = $('<li class="list-group-item"></li>').append($addEventElementLink);
-
-
-    // Get the ul that holds the collection of eventElements
-    $collectionHolder = $('ul.list-group');
-
-    // add a delete link to all of the existing eventElements form li elements
-    $collectionHolder.find('li').each(function() {
-        addEventElementFormDeleteLink($(this));
-    });
+    var $addButton = $('<a href="#" class="btn btn-success">' +
+                            '<span class="glyphicon glyphicon-plus"></span> Dodaj kolejne zdarzenie' +
+                        '</a>');
+    var $newLi = $('<li class="list-group-item"></li>');
 
     // add the "Dodaj kolejne zdarzenie" anchor and li to the tags ul
-    $collectionHolder.append($newLinkLi);
+    $collectionHolder.append($newLi);
 
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    $addEventElementLink.on('click', function(e) {
+    addEventElementForm($collectionHolder, $newLi.append($addButton));
+
+    $addButton.on('click', function(e) {
 
         e.preventDefault();
 
-        addEventElementForm($collectionHolder, $newLinkLi);
+        addEventElementForm($collectionHolder, $newLi);
+
+
     });
 
-    function addEventElementForm($collectionHolder, $newLinkLi) {
+    function addEventElementForm($collectionHolder, $newLi) {
         // Get the data-prototype
-        var prototype = $collectionHolder.data('prototype');
+        var form  = $collectionHolder.data('prototype');
 
         // get the new index
         var index = $collectionHolder.data('index');
 
-        var newForm = prototype;
-        // You need this only if you didn't set 'label' => false in your tags field in TaskType
-        // Replace '__name__label__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        // newForm = newForm.replace(/__name__label__/g, index);
-
-        // Replace '__name__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        newForm = newForm.replace(/__name__/g, index);
+        form = form.replace(/__name__/g, index);
 
         // increase the index with one for the next item
         $collectionHolder.data('index', index + 1);
 
         // Display the form in the page in an li, before the "Dodaj kolejne zdarzenie" link li
-        var $newFormLi = $('<li></li>').append(newForm);
-        $newLinkLi.before($newFormLi);
+        form = $('<li class="list-group-item formColor"></li>').append(form);
 
-        addEventElementFormDeleteLink($newFormLi);
+        $newLi.before(form);
+
+        if (index != 0) {
+            addRemoveButton(form);
+        }
+
+        formBeautify(form.children().children());
     }
 
-    function addEventElementFormDeleteLink($EventElementFormLi) {
+    function addRemoveButton(form) {
 
-        var $removeFormA = $('<a href="#" class="btn btn-danger">' +
-                            '<span class="glyphicon glyphicon-minus"></span> Usuń to zdarzenie' +
-                            '</a>');
-        $EventElementFormLi.append($removeFormA);
+        var $removeButton = $('<div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">' +
+                                '<a href="#" class="btn btn-danger">' +
+                                    '<span class="glyphicon glyphicon-minus"></span> Usuń to zdarzenie' +
+                                '</a>' +
+                            '</div>');
+        form.children().append($removeButton);
 
-        $removeFormA.on('click', function(e) {
+        $removeButton.on('click', function(e) {
 
             e.preventDefault();
 
-            $EventElementFormLi.remove();
+            form.remove();
         });
     }
 
-    $('#appbundle_event_eventElement_0_serviceTypee').attr('selected','selected').change( function () {
+    function formBeautify (form) {
 
-        var serviceTypeColor = $('#formColor').removeAttr("class");
-        var serviceTypeId = $('#appbundle_event_eventElement_0_serviceType').find(":selected").val();
+        form.addClass( "input-group col-xs-12 col-sm-4 col-md-3 col-lg-2" ).find('label').remove();
 
-        $ ('.input-period').removeAttr("disabled");
+        form.eq(0).prepend( '<div class="width80 input-group-addon">' +
+                                '<span class="glyphicon glyphicon-wrench"></span>' +
+                            '</div>');
+        form.eq(0).find('select').addClass('form-control width160');
 
-        switch (serviceTypeId) {
-            case '1':
-                serviceTypeColor.addClass("formColorGreen").addClass("panel-body");
-                $ ('.input-period').attr("disabled", "disabled");
-                break;
-            case '2':
-                serviceTypeColor.addClass("formColorYellow").addClass("panel-body");
-                break;
-            case '3':
-                serviceTypeColor.addClass("formColorRed").addClass("panel-body");
-                break;
-            case '4':
-                serviceTypeColor.addClass("formColorPurple").addClass("panel-body");
-                break;
-            case '5':
-                serviceTypeColor.addClass("formColorBlue").addClass("panel-body");
-                break;
-            case '6':
-                serviceTypeColor.addClass("formColorOrange").addClass("panel-body");
-                break;
+        form.eq(1).addClass('custom-search-form');
+        form.eq(1).prepend( '<div class="input-group-btn">' +
+                                '<button id="searchParts" type="button" class="btn btn-search btn-default width80" data-toggle="dropdown">' +
+                                    '<span class="glyphicon glyphicon-search"></span>' +
+                                    '<span class="caret"></span>' +
+                                '</button>' +
+                            '</div>');
+        form.eq(1).find('input').attr({
+            placeholder: "wprowadź lub wybierz część",
+            class: "form-control width160"
+        });
+        form.eq(2).prepend('<div class="width80 input-group-addon">PLN</div>');
+        form.eq(2).find('input').attr({
+            placeholder:    "wartość wymiany",
+            class:          "form-control width160",
+            scale:          '2',
+            min:            '0',
+            step:           '1'
+        });
+        form.eq(3).prepend('<div class="width80 input-group-addon">tyś. KM</div>');
+        form.eq(3).find('input').attr({
+            placeholder:    "okr. wymiany",
+            class:          "form-control width160 input-period",
+            scale:          '2',
+            min:            '0',
+            step:           '1'
+        });
+        form.eq(4).prepend('<div class="width80 input-group-addon">miesięcy</div>');
+        form.eq(4).find('input').attr({
+            placeholder:    "okr. wymiany",
+            class:          "form-control width160 input-period",
+            scale:          '2',
+            min:            '0',
+            step:           '1'
+        });
+
+        $('li.formColor').find('select').change( function () {
+
+            var serviceTypeVal = $(this).val();
+
+            var li = $(this).parent().parent().parent();
+
+            var inputPeriod = $(this).parent().parent().find('.input-period').removeAttr("disabled");
+
+            switch (serviceTypeVal) {
+                case '1':
+                    li.attr('style', 'background-color: #00CC00');
+                    inputPeriod.attr("disabled", "disabled");
+                    break;
+                case '2':
+                    li.attr('style', 'background-color: #FFFF00');
+                    // inputPeriod.removeAttr("disabled");
+                    break;
+                case '3':
+                    li.attr('style', 'background-color: #FF0000');
+                    // inputPeriod.removeAttr("disabled");
+                    break;
+                case '4':
+                    li.attr('style', 'background-color: #FF00FF');
+                    // inputPeriod.removeAttr("disabled");
+                    break;
+                case '5':
+                    li.attr('style', 'background-color: #6495ED');
+                    // inputPeriod.removeAttr("disabled");
+                    break;
+                case '6':
+                    li.attr('style', 'background-color: orange');
+                    // inputPeriod.removeAttr("disabled");
+                    break;
+                default:
+                    li.removeAttr('style');
+            }
+        });
+    }
+
+    function dump(obj) {
+        var out = '';
+        for (var i in obj) {
+            out += i + ": " + obj[i] + "\n";
         }
-    });
+
+        var pre = document.createElement('pre');
+        pre.innerHTML = out;
+        document.body.appendChild(pre)
+    }
 
     $('a[href="#navbar-more-show"], .navbar-more-overlay').on('click', function(event) {
         event.preventDefault();

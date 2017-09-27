@@ -16,10 +16,10 @@ class EventElementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('event', 'entity', array(
-                'class'         => 'AppBundle:Event',
-                'property'      => 'id',
-            ))
+//            ->add('event', 'entity', array(
+//                'class'         => 'AppBundle:Event',
+//                'property'      => 'id',
+//            ))
             ->add('serviceType', 'entity', array(
                 'class'         => 'AppBundle:ServiceType',
                 'property'      => 'name',
