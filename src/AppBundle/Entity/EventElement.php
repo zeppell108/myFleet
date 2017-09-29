@@ -25,21 +25,20 @@ class EventElement
     private $id;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="event", type="integer")
-     *
-     * @ORM\ManyToOne(targetEntity="Event")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
-     */
-    private $event; //, inversedBy="event_element"
-
-    /**
      * @var int
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(name="serviceType", type="integer")
-     * @ORM\OneToOne(targetEntity="ServiceType")
+     * @ORM\Column(name="event_id", type="integer")
+     *
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="event_element")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
+
+    /**
+     * @var \stdClass
+     *
+     * @ORM\Column(name="serviceType", type="object")
+     * @ORM\OneToMany(targetEntity="ServiceType", mappedBy="event_element")
      * @ORM\JoinColumn(name="serviceType_id", referencedColumnName="id")
      */
     private $serviceType;
@@ -73,7 +72,6 @@ class EventElement
      */
     private $monthPeriod;
 
-
     /**
      * Get id
      *
@@ -90,7 +88,7 @@ class EventElement
      * @param $event
      * @return EventElement
      */
-    public function setEvent(Event $event)
+    public function setEvent($event)
     {
         $this->event = $event;
 
@@ -122,7 +120,7 @@ class EventElement
     /**
      * Get serviceType
      *
-     * @return integer 
+     * @return \stdClass
      */
     public function getServiceType()
     {

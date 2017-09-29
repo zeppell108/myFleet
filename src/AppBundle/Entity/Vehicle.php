@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\User;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Vehicle
@@ -61,30 +62,17 @@ class Vehicle
     private $purchaseDate;
 
     /**
-     * @var DateTime
+     * @var Date
      *
-     * @ORM\Column(name="sale_date", type="date")
+     * @ORM\Column(name="sale_date", type="date", nullable=true)
      */
     private $saleDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Event", inversedBy="vehicle")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
-     */
-    private $event;
-
-    /**
-     * Vehicle constructor.
-     */
-    public function __construct()
-    {
-        $this->event = new ArrayCollection();
-    }
-
-    /**
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 

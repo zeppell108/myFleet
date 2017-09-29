@@ -1,16 +1,10 @@
 {% extends "base.html.twig" %}
 
-
-
-
-
 {% block title %}HOME!{% endblock %}
 
 {% block link %}
     <link rel="stylesheet" href="{{ asset('bundles/app/css/home.css') }}" type="text/javascript" media="all">
 {% endblock %}
-
-
 
 {%  block header %}
     <div class="panel panel-primary visible-xs">
@@ -23,55 +17,52 @@
     </div>
 {%  endblock header %}
 
-
-
 {% block body %}
 
     {% dump(form) %}
     <div class="well">
         {{ form_start(form, {'attr': {'style':'margin: 2%', 'class':'form-inline'}}) }}
-            <div class="container-fluid">
-                <div class="panel panel-default row">
-                    <div class="panel-heading">
-                        <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                            <div class="width80 input-group-addon">
-                                <span class="glyphicon glyphicon-bed"></span>
-                            </div>
+        <div class="container-fluid">
+            <div class="panel panel-default row">
+
+                <div class="panel-heading">
+                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <div class="width80 input-group-addon">
+                            <span class="glyphicon glyphicon-bed"></span>
+                        </div>
                         {{ form_widget(form.vehicle, {'attr': {'class': 'form-control width160'}} ) }}
-                        </div>
-                        <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                            {{ form_widget(form.name, {'attr':
-                                {'class': 'form-control', 'placeholder': 'wprowadź nazwę zdarzenia'}} ) }}
-                        </div>
-                        <div id='datetimepicker' class="input-group date col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                            <div class="width80 input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </div>
-                            {{ form_widget(form.date, {'attr': {'class': 'form-control width160'}} ) }}
-                        </div>
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-group" data-prototype="{{ form_widget(form.eventElement.vars.prototype)|e('html_attr') }}"></ul>
+                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        {{ form_widget(form.name, {'attr':
+                            {'class': 'form-control', 'placeholder': 'wprowadź nazwę zdarzenia'}} ) }}
                     </div>
-
-                    <div class="panel-footer">
-                        <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                            <button type="submit" id="appbundle_event_save" name="appbundle_event[save]"
-                                    class="btn btn-primary form-control">
-                                <span class="glyphicon glyphicon-floppy-save"></span>
-                                Zapisz całe zdarzenie
-                            </button>
+                    <div id='datetimepicker' class="input-group date col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <div class="width80 input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
                         </div>
-                        {#{{ form_widget(form.eventElement.children.0.children.event, {'event': form})}}#}
+                        {{ form_widget(form.date, {'attr': {'class': 'form-control width160'}} ) }}
                     </div>
+                </div>
 
+                <div class="panel-body">
+                    <ul class="list-group" data-prototype="
+                            {{ form_widget(form.eventElement.vars.prototype)|e('html_attr') }}">
+                    </ul>
+                </div>
 
+                <div class="panel-footer">
+                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <button type="submit" id="appbundle_event_save" name="appbundle_event[save]"
+                                class="btn btn-primary form-control">
+                            <span class="glyphicon glyphicon-floppy-save"></span>
+                            Zapisz całe zdarzenie
+                        </button>
+                    </div>
                 </div>
             </div>
-
+        </div>
         {{ form_end(form, {'render_rest': false}) }}
     </div>
-
 
 {% endblock %}
 

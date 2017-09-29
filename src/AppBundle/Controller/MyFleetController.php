@@ -22,53 +22,34 @@ class MyFleetController extends Controller
     {
 //        $this->temp1();
 
-
         $event = new Event();
-
-//        $eventElement->setEvent($event);
 
         $form = $this->createForm('AppBundle\Form\EventType', $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() ) {
 
-            echo '<pre>' . print_r($form->getData(), true) . '</pre>';die();
-
-            foreach ($form->getData()->geteventElement() as $element){
-
-            }
-
-//            $eventElement = new EventElement();
-//            $event->getEventElement()->add($eventElement);
-
-
+//            echo '<pre>' . var_export($_POST, true) . '</pre>';die();
 
             $em = $this->getDoctrine()->getManager();
 
+            $eventElementArray = $form->getData()->getEventElement()->toArray();
+
+            $event->setEventElement($eventElementArray);
+            $event->setVehicle($_POST['appbundle_event']['vehicle']);
             $em->persist($event);
-            $em->persist($eventElement);
+            $em->flush();
+
+            foreach ($eventElementArray as $eventElement){
+                $eventElement->setEvent($event->getId());
+                $em->persist($eventElement);
+            }
 
             $em->flush();
 
-//            echo '<pre>' . var_export($form->getData()->getVehicle(), true) . '</pre>';die();
-//
-//            echo '!!!!!!'; die();
+
+            return $this->redirectToRoute('main');
         }
-
-//        $formEventElement = $this->createForm('AppBundle:Form:EventElement', $eventElement);
-//
-//        $formEventElement->handleRequest($request);
-//
-//        if ($formEventElement->isSubmitted() && $formEventElement->isValid()) {
-//            $eventElement->setEvent($event);
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($eventElement);
-//            $em->persist($event);
-//            $em->flush();
-//        }
-
-//        if ()
-
 
         $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
@@ -126,13 +107,12 @@ class MyFleetController extends Controller
         $em = $this->getDoctrine()->getManager();
         $eve = $em->getRepository('AppBundle:Event')->findAll();
 
-        $originalElements = new ArrayCollection();
-
-        // Create an ArrayCollection of the current Tag objects in the database
-        foreach ($eve as $item) {
-            $originalElements->add($item->getEventElement());
-        }
-        echo '<pre>' . var_export($originalElements, true) . '</pre>';
+//        $originalElements = new ArrayCollection();
+//
+//        foreach ($eve as $item) {
+//            $originalElements->add($item->getEventElement());
+//        }
+        echo '<pre>' . print_r($eve, true) . '</pre>';
         die();
     }
 }

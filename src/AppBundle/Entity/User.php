@@ -24,14 +24,14 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vehicle", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="Vehicle", mappedBy="user", cascade={"persist"})
      * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
      */
     private $vehicle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vehicle", inversedBy="user")
-     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="AutoService", mappedBy="user", cascade={"persist"})
+     * @ORM\JoinColumn(name="auto_service_id", referencedColumnName="id")
      */
     private $autoService;
 
@@ -40,6 +40,7 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->vehicle = new ArrayCollection();
         $this->autoService = new ArrayCollection();
     }
@@ -69,7 +70,6 @@ class User extends BaseUser
     public function setVehicle($vehicle)
     {
         $this->vehicle = $vehicle;
-
         return $this;
     }
 
@@ -83,12 +83,11 @@ class User extends BaseUser
 
     /**
      * @param mixed $autoService
-     * @return User
+     * @return $this
      */
     public function setAutoService($autoService)
     {
         $this->autoService = $autoService;
-
         return $this;
     }
 }

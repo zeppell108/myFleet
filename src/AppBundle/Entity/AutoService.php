@@ -31,9 +31,9 @@ class AutoService
     /**
      * @var string
      *
-     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
-    private $adress;
+    private $address;
 
     /**
      * @var \stdClass
@@ -42,7 +42,6 @@ class AutoService
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
-
 
     /**
      * Get id
@@ -80,12 +79,12 @@ class AutoService
     /**
      * Set adress
      *
-     * @param string $adress
+     * @param string $address
      * @return AutoService
      */
-    public function setAdress($adress)
+    public function setAddress($address)
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
@@ -95,9 +94,9 @@ class AutoService
      *
      * @return string 
      */
-    public function getAdress()
+    public function getAddress()
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**

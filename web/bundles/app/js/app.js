@@ -74,40 +74,43 @@ $( document ).ready(function() {
 
         form.addClass( "input-group col-xs-12 col-sm-4 col-md-3 col-lg-2" ).find('label').remove();
 
-        form.eq(0).prepend( '<div class="width80 input-group-addon">' +
+        form.eq(0).attr('style', "display:none");
+        // form.eq(0).find('select').val('event.id');
+
+        form.eq(1).prepend( '<div class="width80 input-group-addon">' +
                                 '<span class="glyphicon glyphicon-wrench"></span>' +
                             '</div>');
-        form.eq(0).find('select').addClass('form-control width160');
+        form.eq(1).find('select').addClass('form-control width160');
 
-        form.eq(1).addClass('custom-search-form');
-        form.eq(1).prepend( '<div class="input-group-btn">' +
+        form.eq(2).addClass('custom-search-form');
+        form.eq(2).prepend( '<div class="input-group-btn">' +
                                 '<button id="searchParts" type="button" class="btn btn-search btn-default width80" data-toggle="dropdown">' +
                                     '<span class="glyphicon glyphicon-search"></span>' +
                                     '<span class="caret"></span>' +
                                 '</button>' +
                             '</div>');
-        form.eq(1).find('input').attr({
+        form.eq(2).find('input').attr({
             placeholder: "wprowadź lub wybierz część",
             class: "form-control width160"
         });
-        form.eq(2).prepend('<div class="width80 input-group-addon">PLN</div>');
-        form.eq(2).find('input').attr({
+        form.eq(3).prepend('<div class="width80 input-group-addon">PLN</div>');
+        form.eq(3).find('input').attr({
             placeholder:    "wartość wymiany",
             class:          "form-control width160",
             scale:          '2',
             min:            '0',
             step:           '1'
         });
-        form.eq(3).prepend('<div class="width80 input-group-addon">tyś. KM</div>');
-        form.eq(3).find('input').attr({
+        form.eq(4).prepend('<div class="width80 input-group-addon">tyś. KM</div>');
+        form.eq(4).find('input').attr({
             placeholder:    "okr. wymiany",
             class:          "form-control width160 input-period",
             scale:          '2',
             min:            '0',
             step:           '1'
         });
-        form.eq(4).prepend('<div class="width80 input-group-addon">miesięcy</div>');
-        form.eq(4).find('input').attr({
+        form.eq(5).prepend('<div class="width80 input-group-addon">miesięcy</div>');
+        form.eq(5).find('input').attr({
             placeholder:    "okr. wymiany",
             class:          "form-control width160 input-period",
             scale:          '2',

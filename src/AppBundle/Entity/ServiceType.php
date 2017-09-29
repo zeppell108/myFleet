@@ -26,13 +26,17 @@ class ServiceType extends Controller
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50, unique=true)
+     * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
 
     public function __toString() {
         return $this->name;
     }
+//    public function __construct()
+//    {
+//        return $this->id;
+//    }
 
     /**
      * Get id

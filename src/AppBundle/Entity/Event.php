@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Event
@@ -33,7 +34,7 @@ class Event
     /**
      * @var
      *
-     * @ORM\Column(name="event_element", type="integer")
+     * @ORM\Column(name="event_element", type="object")
      *
      * @ORM\OneToMany(targetEntity="EventElement", mappedBy="event", cascade={"persist"})
      * @ORM\JoinColumn(name="eventElement_id", referencedColumnName="id")
@@ -41,21 +42,26 @@ class Event
     protected $eventElement;
 
     /**
-     * @var \stdClass
+     * @var int
      *
-     * @ORM\Column(name="vehicle", type="integer")
+     * @ORM\Column(name="vehicle_id", type="integer")
      *
-     * @ORM\ManyToOne(targetEntity="Vehicle", inversedBy="event")
+     * @ORM\ManyToOne(targetEntity="Vehicle")
      * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
      */
     protected $vehicle;
 
     /**
-     * @var DateTime
+     * @var Date
      *
      * @ORM\Column(name="date", type="date")
      */
     protected $date;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Event constructor.
@@ -160,15 +166,13 @@ class Event
     {
         $this->eventElement = $eventElement;
 
-        $eventElement->setEvent($this);
-
         return $this;
     }
 
     /**
      * @param EventElement $eventElement
      */
-    public function addEventElement($eventElement)
+    public function addEventElement(EventElement $eventElement)
     {
         $eventElement->setEvent($this);
 
