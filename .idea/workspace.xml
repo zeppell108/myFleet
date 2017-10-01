@@ -3,17 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d3d13bac-f394-4807-8ab2-6551e6f3c8eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/home.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/home.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/MyFleetController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/MyFleetController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/AutoService.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/AutoService.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Event.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Event.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/ServiceType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/ServiceType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/EventElementType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/EventElementType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/EventType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/EventType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/bundles/app/js/app.js" afterPath="$PROJECT_DIR$/web/bundles/app/js/app.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +35,8 @@
       <file leaf-file-name="MyFleetController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/MyFleetController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+            <state relative-caret-position="612">
+              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding>
                 <element signature="e#40#67#0#PHP" expanded="true" />
               </folding>
@@ -49,21 +44,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/bundles/app/js/app.js">
+      <file leaf-file-name="home.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/home.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
+            <state relative-caret-position="62">
+              <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventElementType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EventElementType.php">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/bundles/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+            <state relative-caret-position="414">
+              <caret line="141" column="11" lean-forward="true" selection-start-line="141" selection-start-column="11" selection-end-line="141" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Part.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Part.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2548">
+              <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -72,37 +87,27 @@
       <file leaf-file-name="Event.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Event.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="902">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="282">
+              <caret line="59" column="73" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="59" selection-end-column="73" />
               <folding>
                 <element signature="e#36#49#0#PHP" expanded="true" />
-                <element signature="e#1317#1354#0#PHP" expanded="false" />
-                <element signature="e#1459#1515#0#PHP" expanded="false" />
-                <element signature="e#1520#1581#0#PHP" expanded="false" />
-                <element signature="e#1587#1669#0#PHP" expanded="false" />
-                <element signature="e#1674#1768#0#PHP" expanded="false" />
-                <element signature="e#1774#1831#0#PHP" expanded="false" />
-                <element signature="e#1836#1901#0#PHP" expanded="false" />
-                <element signature="e#1907#1988#0#PHP" expanded="false" />
-                <element signature="e#1993#2099#0#PHP" expanded="false" />
-                <element signature="e#2105#2167#0#PHP" expanded="false" />
-                <element signature="e#2172#2243#0#PHP" expanded="false" />
-                <element signature="e#2249#2333#0#PHP" expanded="false" />
-                <element signature="e#2338#2432#0#PHP" expanded="false" />
-                <element signature="e#2438#2496#0#PHP" expanded="false" />
-                <element signature="e#2501#2566#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventElement.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1558">
-              <caret line="92" column="30" lean-forward="false" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
-              <folding>
-                <element signature="e#36#90#0#PHP" expanded="true" />
+                <element signature="e#1583#1620#0#PHP" expanded="false" />
+                <element signature="e#1725#1781#0#PHP" expanded="false" />
+                <element signature="e#1786#1847#0#PHP" expanded="false" />
+                <element signature="e#1853#1935#0#PHP" expanded="false" />
+                <element signature="e#1940#2034#0#PHP" expanded="false" />
+                <element signature="e#2040#2097#0#PHP" expanded="false" />
+                <element signature="e#2102#2167#0#PHP" expanded="false" />
+                <element signature="e#2173#2254#0#PHP" expanded="false" />
+                <element signature="e#2259#2365#0#PHP" expanded="false" />
+                <element signature="e#2371#2433#0#PHP" expanded="false" />
+                <element signature="e#2438#2509#0#PHP" expanded="false" />
+                <element signature="e#2515#2599#0#PHP" expanded="false" />
+                <element signature="e#2604#2698#0#PHP" expanded="false" />
+                <element signature="e#2704#2762#0#PHP" expanded="false" />
+                <element signature="e#2767#2832#0#PHP" expanded="false" />
+                <element signature="e#3588#3618#0#PHP" expanded="false" />
+                <element signature="e#3623#3702#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -120,23 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="35" column="25" lean-forward="false" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-              <folding>
-                <element signature="e#36#84#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Vehicle.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+            <state relative-caret-position="1207">
+              <caret line="73" column="4" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="76" selection-end-column="5" />
               <folding>
                 <element signature="e#36#49#0#PHP" expanded="true" />
               </folding>
@@ -147,9 +140,11 @@
       <file leaf-file-name="EventType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EventType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="24" column="40" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="682">
+              <caret line="46" column="5" lean-forward="false" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+              <folding>
+                <element signature="e#34#74#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -213,19 +208,20 @@
         <option value="$PROJECT_DIR$/app/Resources/views/vehicle.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/VehicleController.php" />
         <option value="$PROJECT_DIR$/web/bundles/app/css/home.css" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/home.html.twig" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/AutoService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/EventElementType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/EventType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/ServiceType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/AutoService.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Event.php" />
-        <option value="$PROJECT_DIR$/web/bundles/app/js/app.js" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/MyFleetController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/home.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/EventType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Part.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/web/bundles/app/js/app.js" />
       </list>
     </option>
   </component>
@@ -296,13 +292,14 @@
               <item name="myFleet" type="b2602c69:ProjectViewProjectNode" />
               <item name="myFleet" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="myFleet" type="b2602c69:ProjectViewProjectNode" />
               <item name="myFleet" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="myFleet" type="b2602c69:ProjectViewProjectNode" />
@@ -506,7 +503,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340450000" />
+    <option name="totallyTimeSpent" value="362579000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -519,8 +516,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1720" y="705" width="1724" height="709" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15384616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15384616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944915" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -560,20 +558,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/ChangePassword/changePassword.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/security.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -707,26 +691,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/Core/Core_c.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -755,26 +723,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/AutoService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/bundles/framework/css/body.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/home.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -784,7 +736,7 @@
         <state relative-caret-position="440">
           <caret line="35" column="25" lean-forward="false" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
           <folding>
-            <element signature="e#36#84#0#PHP" expanded="true" />
+            <element signature="e#36#84#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,34 +746,6 @@
         <state relative-caret-position="154">
           <caret line="20" column="98" lean-forward="false" selection-start-line="20" selection-start-column="98" selection-end-line="20" selection-end-column="98" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EventType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="24" column="40" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/ServiceType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#36#90#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-          <folding>
-            <element signature="e#36#49#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,7 +786,7 @@
         <state relative-caret-position="66">
           <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding>
-            <element signature="e#989#1036#0#PHP" expanded="true" />
+            <element signature="e#989#1036#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -875,14 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/bundles/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EventElementType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -891,48 +807,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Event.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/AutoServiceType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/AutoService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-708">
+          <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="91" column="5" lean-forward="false" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+          <folding>
+            <element signature="e#36#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/home.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EventType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="46" column="5" lean-forward="false" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="e#34#74#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Vehicle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="73" column="4" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="76" selection-end-column="5" />
           <folding>
             <element signature="e#36#49#0#PHP" expanded="true" />
-            <element signature="e#1317#1354#0#PHP" expanded="false" />
-            <element signature="e#1459#1515#0#PHP" expanded="false" />
-            <element signature="e#1520#1581#0#PHP" expanded="false" />
-            <element signature="e#1587#1669#0#PHP" expanded="false" />
-            <element signature="e#1674#1768#0#PHP" expanded="false" />
-            <element signature="e#1774#1831#0#PHP" expanded="false" />
-            <element signature="e#1836#1901#0#PHP" expanded="false" />
-            <element signature="e#1907#1988#0#PHP" expanded="false" />
-            <element signature="e#1993#2099#0#PHP" expanded="false" />
-            <element signature="e#2105#2167#0#PHP" expanded="false" />
-            <element signature="e#2172#2243#0#PHP" expanded="false" />
-            <element signature="e#2249#2333#0#PHP" expanded="false" />
-            <element signature="e#2338#2432#0#PHP" expanded="false" />
-            <element signature="e#2438#2496#0#PHP" expanded="false" />
-            <element signature="e#2501#2566#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/ServiceType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#36#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="59" column="73" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="59" selection-end-column="73" />
+          <folding>
+            <element signature="e#36#49#0#PHP" expanded="true" />
+            <element signature="e#1583#1620#0#PHP" expanded="false" />
+            <element signature="e#1725#1781#0#PHP" expanded="false" />
+            <element signature="e#1786#1847#0#PHP" expanded="false" />
+            <element signature="e#1853#1935#0#PHP" expanded="false" />
+            <element signature="e#1940#2034#0#PHP" expanded="false" />
+            <element signature="e#2040#2097#0#PHP" expanded="false" />
+            <element signature="e#2102#2167#0#PHP" expanded="false" />
+            <element signature="e#2173#2254#0#PHP" expanded="false" />
+            <element signature="e#2259#2365#0#PHP" expanded="false" />
+            <element signature="e#2371#2433#0#PHP" expanded="false" />
+            <element signature="e#2438#2509#0#PHP" expanded="false" />
+            <element signature="e#2515#2599#0#PHP" expanded="false" />
+            <element signature="e#2604#2698#0#PHP" expanded="false" />
+            <element signature="e#2704#2762#0#PHP" expanded="false" />
+            <element signature="e#2767#2832#0#PHP" expanded="false" />
+            <element signature="e#3588#3618#0#PHP" expanded="false" />
+            <element signature="e#3623#3702#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/MyFleetController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+        <state relative-caret-position="612">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
             <element signature="e#40#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EventElement.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Part.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="92" column="30" lean-forward="false" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
-          <folding>
-            <element signature="e#36#90#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="264">
+          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2548">
+          <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/bundles/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="141" column="11" lean-forward="true" selection-start-line="141" selection-start-column="11" selection-end-line="141" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>

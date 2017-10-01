@@ -52,16 +52,26 @@ class Event
     protected $vehicle;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="auto_service_id", type="integer")
+     *
+     * @ORM\ManyToOne(targetEntity="AutoService")
+     * @ORM\JoinColumn(name="auto_service_id", referencedColumnName="id")
+     */
+    protected $autoService;
+
+    /**
      * @var Date
      *
      * @ORM\Column(name="date", type="date")
      */
     protected $date;
 
-    public function __toString()
-    {
-        return $this->name;
-    }
+//    public function __toString()
+//    {
+//        return $this->name;
+//    }
 
     /**
      * Event constructor.
@@ -165,7 +175,6 @@ class Event
     public function setEventElement($eventElement)
     {
         $this->eventElement = $eventElement;
-
         return $this;
     }
 
@@ -185,5 +194,23 @@ class Event
     public function removeEventElement(EventElement $eventElement)
     {
         $this->eventElement->removeElement($eventElement);
+    }
+
+    /**
+     * @return int
+     */
+    public function getAutoService()
+    {
+        return $this->autoService;
+    }
+
+    /**
+     * @param $autoService
+     * @return $this
+     */
+    public function setAutoService($autoService)
+    {
+        $this->autoService = $autoService;
+        return $this;
     }
 }

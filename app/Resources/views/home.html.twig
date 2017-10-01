@@ -19,7 +19,8 @@
 
 {% block body %}
 
-    {% dump(form) %}
+    {#{% dump(form) %}#}
+
     <div class="well">
         {{ form_start(form, {'attr': {'style':'margin: 2%', 'class':'form-inline'}}) }}
         <div class="container-fluid">
@@ -35,6 +36,12 @@
                     <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         {{ form_widget(form.name, {'attr':
                             {'class': 'form-control', 'placeholder': 'wprowadź nazwę zdarzenia'}} ) }}
+                    </div>
+                    <div class="input-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <div class="width80 input-group-addon">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </div>
+                        {{ form_widget(form.autoService, {'attr': {'class': 'form-control width160'}} ) }}
                     </div>
                     <div id='datetimepicker' class="input-group date col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <div class="width80 input-group-addon">
@@ -63,6 +70,7 @@
         </div>
         {{ form_end(form, {'render_rest': false}) }}
     </div>
+
 
 {% endblock %}
 

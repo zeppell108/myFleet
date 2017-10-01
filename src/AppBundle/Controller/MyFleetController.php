@@ -21,6 +21,7 @@ class MyFleetController extends Controller
     public function indexAction(Request $request)
     {
 //        $this->temp1();
+//        echo '<pre>' . var_export($_POST, true) . '</pre>';die();
 
         $event = new Event();
 
@@ -28,15 +29,21 @@ class MyFleetController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() ) {
-
 //            echo '<pre>' . var_export($_POST, true) . '</pre>';die();
 
             $em = $this->getDoctrine()->getManager();
 
             $eventElementArray = $form->getData()->getEventElement()->toArray();
 
-            $event->setEventElement($eventElementArray);
+            $arrayColection = new ArrayCollection();
+
+            foreach ($eventElementArray as $eventElement){
+                $arrayColection->add($eventElement);
+            }
+
+            $event->setEventElement($arrayColection);
             $event->setVehicle($_POST['appbundle_event']['vehicle']);
+            $event->setAutoService($_POST['appbundle_event']['autoService']);
             $em->persist($event);
             $em->flush();
 
@@ -46,7 +53,6 @@ class MyFleetController extends Controller
             }
 
             $em->flush();
-
 
             return $this->redirectToRoute('main');
         }

@@ -3,10 +3,8 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,12 +19,11 @@ class EventType extends AbstractType
         $builder
             ->add('name')
             ->add('vehicle', 'entity', array(
-                'class'         => 'AppBundle:Vehicle',
-                'property'      => 'name',
-                'expanded'      => false,
-                'multiple'      => false,
-                'choices_as_values' => true,
-                'empty_value'   => 'Wybierz pojazd',
+                'class'             => 'AppBundle:Vehicle',
+                'property'          => 'name',
+                'expanded'          => false,
+                'multiple'          => false,
+                'empty_value'       => 'Wybierz pojazd',
             ))
             ->add('date', DateType::class, array(
                 'widget' => 'single_text',
@@ -38,6 +35,13 @@ class EventType extends AbstractType
                 'by_reference'  => false,
                 'allow_delete'  => true,
                 ))
+            ->add('autoService', 'entity', array(
+                'class'             => 'AppBundle:AutoService',
+                'property'          => 'name',
+                'expanded'          => false,
+                'multiple'          => false,
+                'empty_value'       => 'Auto Serwis',
+            ))
             ->add('save', SubmitType::class)
         ;
     }

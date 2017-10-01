@@ -6,7 +6,7 @@ $( document ).ready(function() {
 
     var $collectionHolder = $('ul.list-group');
 
-    var $addButton = $('<a href="#" class="btn btn-success">' +
+    var $addButton = $( '<a href="#" class="btn btn-success">' +
                             '<span class="glyphicon glyphicon-plus"></span> Dodaj kolejne zdarzenie' +
                         '</a>');
     var $newLi = $('<li class="list-group-item"></li>');
@@ -50,7 +50,7 @@ $( document ).ready(function() {
             addRemoveButton(form);
         }
 
-        formBeautify(form.children().children());
+        formBeautify(form.children().children(), index);
     }
 
     function addRemoveButton(form) {
@@ -70,7 +70,7 @@ $( document ).ready(function() {
         });
     }
 
-    function formBeautify (form) {
+    function formBeautify (form, index) {
 
         form.addClass( "input-group col-xs-12 col-sm-4 col-md-3 col-lg-2" ).find('label').remove();
 
@@ -83,19 +83,24 @@ $( document ).ready(function() {
         form.eq(1).find('select').addClass('form-control width160');
 
         form.eq(2).addClass('custom-search-form');
+
         form.eq(2).prepend( '<div class="input-group-btn">' +
-                                '<button id="searchParts" type="button" class="btn btn-search btn-default width80" data-toggle="dropdown">' +
+                                '<button id="searchParts" type="button" class="btn btn-search btn-default ' +
+                                    'dropdown-toggle width80">' +
                                     '<span class="glyphicon glyphicon-search"></span>' +
                                     '<span class="caret"></span>' +
                                 '</button>' +
                             '</div>');
         form.eq(2).find('input').attr({
+            value:"ddddddddddd",
             placeholder: "wprowadź lub wybierz część",
+            title: "wprowadź lub wybierz część",
             class: "form-control width160"
         });
         form.eq(3).prepend('<div class="width80 input-group-addon">PLN</div>');
         form.eq(3).find('input').attr({
             placeholder:    "wartość wymiany",
+            title:          "wartość wymiany w PLN",
             class:          "form-control width160",
             scale:          '2',
             min:            '0',
@@ -104,6 +109,7 @@ $( document ).ready(function() {
         form.eq(4).prepend('<div class="width80 input-group-addon">tyś. KM</div>');
         form.eq(4).find('input').attr({
             placeholder:    "okr. wymiany",
+            title:          "okres wymiany w tysiącach km",
             class:          "form-control width160 input-period",
             scale:          '2',
             min:            '0',
@@ -112,12 +118,28 @@ $( document ).ready(function() {
         form.eq(5).prepend('<div class="width80 input-group-addon">miesięcy</div>');
         form.eq(5).find('input').attr({
             placeholder:    "okr. wymiany",
+            title:          "okres wymiany w miesiącach",
             class:          "form-control width160 input-period",
             scale:          '2',
             min:            '0',
             step:           '1'
         });
 
+        // $('li.formColor').find('#searchParts').on('click', function(e){
+        //     alert('fffffffffffffffffffffff');
+        //     e.preventDefault();
+        // })
+        // $.each($('#searchParts'), function (index, item) {
+        //     $(item).on('click', function () {
+        //         alert('fuuuuuuuuuuuuuuuuuuuuuuuu ' + index);
+        //     });
+        // });
+
+        $('li.formColor').find('#searchParts').on('click', function() {
+
+            $(this).css('background-color', 'yellow');
+
+        });
         $('li.formColor').find('select').change( function () {
 
             var serviceTypeVal = $(this).val();
@@ -133,29 +155,40 @@ $( document ).ready(function() {
                     break;
                 case '2':
                     li.attr('style', 'background-color: #FFFF00');
-                    // inputPeriod.removeAttr("disabled");
                     break;
                 case '3':
                     li.attr('style', 'background-color: #FF0000');
-                    // inputPeriod.removeAttr("disabled");
                     break;
                 case '4':
                     li.attr('style', 'background-color: #FF00FF');
-                    // inputPeriod.removeAttr("disabled");
                     break;
                 case '5':
                     li.attr('style', 'background-color: #6495ED');
-                    // inputPeriod.removeAttr("disabled");
                     break;
                 case '6':
                     li.attr('style', 'background-color: orange');
-                    // inputPeriod.removeAttr("disabled");
                     break;
                 default:
                     li.removeAttr('style');
             }
         });
+
     }
+
+    // $.each($('li.formColor'), function (index, item) {
+    //
+    //     var dupa =$(item).find('#searchParts');
+    //
+    //     dupa.on('click', function () {
+    //         alert('fuuuuuuuuuuuuuuuuuuuuuuuu ' + index);
+    //     });
+    // });
+
+    // $.each($('li.formColor'), function (index, item) {
+    //
+    //         alert('fuuuuuuuuuuuuuuuuuuuuuuuu ' + index);
+    //
+    // });
 
     function dump(obj) {
         var out = '';
@@ -178,6 +211,8 @@ $( document ).ready(function() {
         }
         return false;
     });
+
+
 
     // $('.datepicker').datepicker({
     //     format: 'dd/mm/yyyy',

@@ -43,6 +43,11 @@ class AutoService
      */
     private $user;
 
+//    public function __toString()
+//    {
+//        return $this->name;
+//    }
+
     /**
      * Get id
      *
