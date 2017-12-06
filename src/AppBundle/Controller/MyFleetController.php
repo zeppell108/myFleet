@@ -16,7 +16,7 @@ class MyFleetController extends Controller
     /**
      * @Route("/", name="main")
      * @param Request $request
-     * @return
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function indexAction(Request $request)
     {
